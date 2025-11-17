@@ -1,0 +1,111 @@
+@model List<EshopMidtrans.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Keranjang Belanja";
+
+    // Menghitung total keseluruhan dari seluruh item di keranjang
+    decimal total = Model.Sum(i => i.Total);
+}
+
+<div class="container mt-4">
+
+    @if (Model.Count == 0)
+    {
+        @* Header halaman *@
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">Keranjang belanja</h2>
+        </div>
+
+        <!-- Jika keranjang kosong -->
+        <div class="alert alert-warning text-center">
+            <i class="bi bi-emoji-frown"></i> Keranjang masih kosong
+            <br />
+
+            <!-- Tombol kembali ke halaman produk -->
+            <a class="btn btn-primary mt-3" asp-controller="Product" asp-action="Index">
+                <i class="bi bi-bag"></i> Lihat Produk
+            </a>
+        </div>
+    }
+    else
+    {
+        @* Header halaman dan tombol kembali ke halaman produk *@
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">Keranjang belanja</h2>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-primary">
+                Tambah Keranjang +
+            </a>
+        </div>
+
+        <!-- Tabel daftar item keranjang -->
+        <div class="table-responsive">
+            <table class="table table-striped align-middle text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Produk</th>
+                        <th>Harga</th>
+                        <th>Qty</th>
+                        <th>Ukuran</th>
+                        <th>Total</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- Loop semua item keranjang -->
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-start">
+                                <!-- Gambar produk -->
+                                <img src="@item.ImageUrl" alt="@item.ProductName" width="60" height="60" class="rounded me-2"
+                                    style="object-fit:cover;" />
+
+                                <!-- Nama produk -->
+                                <strong>@item.ProductName</strong>
+                            </td>
+
+                            <!-- Harga satuan -->
+                            <td>@String.Format("Rp {0:N0}", item.Price)</td>
+
+                            <!-- Jumlah beli -->
+                            <td>@item.Quantity</td>
+
+                            <!-- Ukuran produk -->
+                            <td>@item.Size</td>
+
+                            <!-- Total harga item (price * qty) -->
+                            <td>
+                                <strong>@String.Format("Rp {0:N0}", item.Total)</strong>
+                            </td>
+
+                            <!-- Tombol hapus item dari keranjang -->
+                            <td>
+                                <a asp-action="Remove" asp-route-id="@item.ProductId" class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash"></i> Hapus
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bagian total dan tombol checkout -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+
+            <!-- Total akhir seluruh item keranjang -->
+            <h4>
+                Total Belanja:
+                <span class="text-success fw-bold">
+                    @String.Format("Rp {0:N0}", total)
+                </span>
+            </h4>
+
+            <!-- Tombol ke halaman checkout -->
+            <a class="btn btn-success btn-lg" asp-controller="Cart" asp-action="Checkout">
+                <i class="bi bi-credit-card"></i> Checkout Sekarang
+            </a>
+        </div>
+    }
+</div>

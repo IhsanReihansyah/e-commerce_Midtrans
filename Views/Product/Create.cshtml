@@ -1,0 +1,80 @@
+@model EshopMidtrans.Models.Product
+
+@{
+    @* Judul halaman yang ditampilkan pada browser *@
+    ViewData["Title"] = "Tambah Produk";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            @* Card untuk membungkus form agar tampil lebih rapi *@
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body p-4">
+
+                    @* Judul halaman form *@
+                    <h2 class="fw-bold mb-4 text-center text-primary">Tambah Produk</h2>
+
+                    @* Form untuk membuat produk baru, submit ke ProductController -> Create *@
+                    <form asp-action="Create" method="post">
+
+                        @* Input: Nama Produk *@
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-semibold">Nama Produk</label>
+
+                            @* Input nama produk, mem-bind ke model Product.Name *@
+                            <input asp-for="Name" 
+                                   class="form-control form-control-lg"
+                                   placeholder="Masukkan nama produk" />
+
+                            @* Menampilkan error validasi jika nama produk tidak valid *@
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        @* Input: Harga Produk *@
+                        <div class="mb-3">
+                            <label asp-for="Price" class="form-label fw-semibold">Harga</label>
+
+                            @* Input harga, otomatis menjadi tipe number *@
+                            <input asp-for="Price"
+                                   type="number"
+                                   class="form-control form-control-lg"
+                                   placeholder="Masukkan harga produk" />
+
+                            @* Menampilkan pesan error validasi harga *@
+                            <span asp-validation-for="Price" class="text-danger small"></span>
+                        </div>
+
+                        @* Input: URL Gambar Produk *@
+                        <div class="mb-4">
+                            <label asp-for="ImageUrl" class="form-label fw-semibold">URL Gambar</label>
+
+                            @* Input URL gambar produk *@
+                            <input asp-for="ImageUrl"
+                                   class="form-control form-control-lg"
+                                   placeholder="https://example.com/gambar.jpg" />
+
+                            @* Validasi jika URL tidak valid *@
+                            <span asp-validation-for="ImageUrl" class="text-danger small"></span>
+                        </div>
+
+                        @* Tombol submit untuk menyimpan produk *@
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-save me-2"></i> Simpan Produk
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @* Menyertakan script bawaan ASP.NET untuk validasi client-side *@
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Pembayaran Gagal";
+}
+
+<div class="container mt-5 text-center">
+    <i class="bi bi-x-circle-fill text-danger" style="font-size: 80px;"></i>
+    <h2 class="mt-3 text-danger">Pembayaran Gagal</h2>
+    <p>Maaf, terjadi kesalahan saat memproses pembayaran Anda.</p>
+
+    <a class="btn btn-danger mt-3" asp-controller="Cart" asp-action="Checkout">
+        <i class="bi bi-arrow-repeat"></i> Coba Lagi
+    </a>
+</div>

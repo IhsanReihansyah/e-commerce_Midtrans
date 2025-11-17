@@ -1,0 +1,107 @@
+@model EshopMidtrans.Models.Product
+
+<div class="container mt-4">
+    <div class="row">
+
+        @* Bagian kiri: Menampilkan gambar produk *@
+        <div class="col-md-5">
+            <img src="@Model.ImageUrl" class="img-fluid rounded shadow-sm" style="object-fit:cover;" />
+        </div>
+
+        @* Bagian kanan: Informasi produk dan form pembelian *@
+        <div class="col-md-7">
+
+            @* Nama produk *@
+            <h2>@Model.Name</h2>
+
+            @* Harga produk *@
+            <h4 class="text-danger fw-bold">
+                @String.Format("Rp {0:N0}", Model.Price)
+            </h4>
+
+            @* FORM 1: TAMBAH KE KERANJANG *@
+            <form method="post" asp-controller="Cart" asp-action="AddToCartWithSize" class="mb-3">
+
+                @* ID Produk (hidden input) *@
+                <input type="hidden" name="ProductId" value="@Model.Id" />
+
+                @* Informasi asal halaman (dipakai jika kembali ke detail setelah add-to-cart) *@
+                <input type="hidden" name="FromPage" value="Detail" />
+
+                @* Pilihan ukuran produk *@
+                <div class="mb-3">
+                    <label class="fw-bold">Pilih Ukuran</label>
+                    <select class="form-control" id="sizeSelect" name="Size" required>
+                        <option value="">-- Pilih Ukuran --</option>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                    </select>
+                </div>
+
+                @* Input jumlah produk *@
+                <div class="mb-3">
+                    <label class="fw-bold">Jumlah</label>
+                    <input type="number" class="form-control" id="qtyInput" name="Quantity"
+                           min="1" value="1" required />
+                </div>
+
+                @* Tombol untuk menambahkan ke keranjang *@
+                <button type="submit" class="btn btn-primary btn-lg w-100 mb-2">
+                    <i class="bi bi-cart-plus"></i> Tambah ke Keranjang
+                </button>
+            </form>
+
+
+            @* FORM 2: CHECKOUT LANGSUNG *@
+            <form method="post" asp-controller="Cart" asp-action="CheckoutNow">
+
+                @* ID produk untuk langsung checkout *@
+                <input type="hidden" name="ProductId" value="@Model.Id" />
+
+                @* Hidden size tetapi tetap required (disinkronkan via JavaScript) *@
+                <select name="Size" id="checkoutSize" class="d-none" required>
+                    <option value="">-- Pilih Ukuran --</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                </select>
+
+                @* Hidden quantity (juga disinkronkan via JavaScript) *@
+                <input type="hidden" name="Quantity" id="checkoutQty" />
+
+                @* Tombol checkout yang langsung mengarah ke proses pembayaran *@
+                <button type="submit" class="btn btn-success btn-lg w-100">
+                    <i class="bi bi-bag-check"></i> Checkout Sekarang
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    // Mengambil element input ukuran & jumlah
+    const sizeSelect = document.getElementById("sizeSelect");
+    const qtyInput = document.getElementById("qtyInput");
+
+    // Hidden input untuk form checkout
+    const checkoutSize = document.getElementById("checkoutSize");
+    const checkoutQty = document.getElementById("checkoutQty");
+
+    // Jika ukuran di form pertama berubah → update ukuran pada form checkout
+    sizeSelect.addEventListener("change", () => {
+        checkoutSize.value = sizeSelect.value;
+    });
+
+    // Jika jumlah di form pertama berubah → update jumlah pada form checkout
+    qtyInput.addEventListener("input", () => {
+        checkoutQty.value = qtyInput.value;
+    });
+
+    // Set nilai default saat halaman pertama kali dibuka
+    checkoutSize.value = sizeSelect.value;
+    checkoutQty.value = qtyInput.value;
+</script>

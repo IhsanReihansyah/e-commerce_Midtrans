@@ -1,0 +1,102 @@
+@{
+    // Judul halaman
+    ViewData["Title"] = "Checkout";
+
+    // Mengambil data keranjang dari ViewBag
+    var cart = ViewBag.Cart as List<EshopMidtrans.Models.CartItem>;
+
+    // Mengambil total harga, default 0 jika null
+    var total = ViewBag.Total != null ? (decimal)ViewBag.Total : 0;
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4"><i class="bi bi-credit-card"></i> Checkout</h2>
+
+    <div class="row">
+
+        <!-- FORM INPUT DATA PEMESAN -->
+        <div class="col-md-7">
+            <div class="card shadow-sm p-4">
+                <h4 class="mb-3">Data Pemesan</h4>
+
+                <!-- Form untuk mengirim data checkout ke ProcessCheckout -->
+                <form asp-action="ProcessCheckout" method="post">
+
+                    <!-- Nama lengkap pembeli -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nama Lengkap</label>
+                        <input type="text" name="CustomerName" class="form-control" required />
+                    </div>
+
+                    <!-- Email pembeli -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Email</label>
+                        <input type="email" name="CustomerEmail" class="form-control" required />
+                    </div>
+
+                    <!-- Alamat lengkap -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Alamat Lengkap</label>
+                        <textarea name="CustomerAddress" class="form-control" rows="3" required></textarea>
+                    </div>
+
+                    <!-- Nomor HP pembeli -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nomor HP</label>
+                        <input type="text" name="CustomerPhone" class="form-control" required />
+                    </div>
+
+                    <!-- Tombol submit pembayaran -->
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="bi bi-wallet2"></i> Bayar Sekarang
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- RINGKASAN BELANJA (KERANJANG) -->
+        <div class="col-md-5">
+            <div class="card shadow-sm p-4">
+                <h4 class="mb-3">
+                    <i class="bi bi-bag-check"></i> Ringkasan Belanja
+                </h4>
+
+                @if (cart != null && cart.Any())
+                {
+                    <!-- Menampilkan daftar item dalam keranjang -->
+                    <ul class="list-group mb-3">
+                        @foreach (var item in cart)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                                <!-- Info produk: nama, ukuran, qty, harga -->
+                                <div>
+                                    <strong>@item.ProductName (@item.Size)</strong><br />
+                                    <small>@item.Quantity x @String.Format("Rp {0:N0}", item.Price)</small>
+                                </div>
+
+                                <!-- Total harga item -->
+                                <span>@String.Format("Rp {0:N0}", item.Total)</span>
+                            </li>
+                        }
+                    </ul>
+
+                    <!-- Total keseluruhan belanja -->
+                    <h5 class="text-end">
+                        Total: 
+                        <span class="text-success fw-bold">
+                            @String.Format("Rp {0:N0}", total)
+                        </span>
+                    </h5>
+                }
+                else
+                {
+                    <!-- Jika keranjang kosong -->
+                    <p class="text-muted">Keranjang kosong.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
