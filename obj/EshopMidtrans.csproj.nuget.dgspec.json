@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\xampp\\htdocs\\EshopMidtrans\\EshopMidtrans.csproj": {}
+    "C:\\xampp\\htdocs\\e-commerce_Midtrans\\EshopMidtrans.csproj": {}
   },
   "projects": {
-    "C:\\xampp\\htdocs\\EshopMidtrans\\EshopMidtrans.csproj": {
+    "C:\\xampp\\htdocs\\e-commerce_Midtrans\\EshopMidtrans.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\xampp\\htdocs\\EshopMidtrans\\EshopMidtrans.csproj",
+        "projectUniqueName": "C:\\xampp\\htdocs\\e-commerce_Midtrans\\EshopMidtrans.csproj",
         "projectName": "EshopMidtrans",
-        "projectPath": "C:\\xampp\\htdocs\\EshopMidtrans\\EshopMidtrans.csproj",
+        "projectPath": "C:\\xampp\\htdocs\\e-commerce_Midtrans\\EshopMidtrans.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\xampp\\htdocs\\EshopMidtrans\\obj\\",
+        "outputPath": "C:\\xampp\\htdocs\\e-commerce_Midtrans\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
