@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EshopMidtrans")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3cef3177b2d6eab274a8b14e6f8ed10aa2011e30")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0621c6e302c46a9befc0f78ac7ae0ba1ebecbb6")]
 [assembly: System.Reflection.AssemblyProductAttribute("EshopMidtrans")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EshopMidtrans")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

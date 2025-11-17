@@ -1,0 +1,10 @@
+C:\xampp\htdocs\e-commerce_Midtrans\obj\Debug\net8.0\EshopMidtrans.csproj.AssemblyReference.cache
+C:\xampp\htdocs\e-commerce_Midtrans\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\xampp\htdocs\e-commerce_Midtrans\obj\Debug\net8.0\EshopMidtrans.GeneratedMSBuildEditorConfig.editorconfig
+C:\xampp\htdocs\e-commerce_Midtrans\obj\Debug\net8.0\EshopMidtrans.AssemblyInfoInputs.cache
+C:\xampp\htdocs\e-commerce_Midtrans\obj\Debug\net8.0\EshopMidtrans.AssemblyInfo.cs
+C:\xampp\htdocs\e-commerce_Midtrans\obj\Debug\net8.0\EshopMidtrans.csproj.CoreCompileInputs.cache
+C:\xampp\htdocs\e-commerce_Midtrans\obj\Debug\net8.0\EshopMidtrans.MvcApplicationPartsAssemblyInfo.cache
+C:\xampp\htdocs\e-commerce_Midtrans\obj\Debug\net8.0\EshopMidtrans.RazorAssemblyInfo.cache
+C:\xampp\htdocs\e-commerce_Midtrans\obj\Debug\net8.0\EshopMidtrans.RazorAssemblyInfo.cs
+C:\xampp\htdocs\e-commerce_Midtrans\obj\Debug\net8.0\EshopMidtrans.sourcelink.json

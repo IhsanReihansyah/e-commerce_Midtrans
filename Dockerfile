@@ -1,5 +1,5 @@
 # Tahap 1: Build (Menggunakan SDK untuk kompilasi)
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 # Salin semua file proyek ke /src
 COPY . .
@@ -10,7 +10,7 @@ WORKDIR "/src"
 RUN dotnet publish "EshopMidtrans.csproj" -c Release -o /app/publish
 
 # Tahap 2: Final (Menggunakan Runtime yang lebih kecil untuk menjalankan aplikasi)
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
 EXPOSE 8071 
 # Salin hasil publish dari tahap build
