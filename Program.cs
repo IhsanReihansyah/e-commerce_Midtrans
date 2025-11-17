@@ -21,6 +21,17 @@ builder.Services.AddSession();
 
 var app = builder.Build();
 
+// Tambahkan kode ini di Program.cs Anda, setelah builder.Build()
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    // Menjalankan migrasi database
+    dbContext.Database.Migrate(); 
+}
+
+// ERROR HANDLING UNTUK MODE PRODUCTION
+// ... sisa kode
+
 // ERROR HANDLING UNTUK MODE PRODUCTION
 if (!app.Environment.IsDevelopment())
 {
